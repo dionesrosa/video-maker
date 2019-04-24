@@ -10,6 +10,7 @@ async function robot() {
 
 	content.searchTerm = await askAndReturnSearchTerm();
 	content.prefix = await askAndReturnPrefix();
+	content.lang = await askAndReturnLang();
 
 	console.log("Iniciando busca sobre: "+content.prefix+" "+content.searchTerm);
 
@@ -40,6 +41,20 @@ async function robot() {
 		const response = await prompts(questions);
 
 		return questions.choices[response.prefix];
+	}
+
+	async function askAndReturnLang() {
+		const questions = {
+			type: 'select',
+			name: 'lang',
+			message: 'Selecione um idioma:',
+			choices: ['pt','en', 'es', 'fr'],
+			validate: value => typeof value === 'string' ? value.trim() !== '' : false
+		};
+
+		const response = await prompts(questions);
+
+		return questions.choices[response.lang];
 	}
 }
 

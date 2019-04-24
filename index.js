@@ -9,9 +9,9 @@ const robots = {
 
 async function start() {
   await robots.input();
-  //await robots.text();
-  //await robots.image();
-  //await robots.video();
+  await robots.text();
+  await robots.image();
+  await robots.video();
   //await robots.youtube();
 
   const content = robots.state.load();
